@@ -11,21 +11,7 @@ contract('ChainList', function(accounts) {
   var articleDescription = "Description for article 1";
   var articlePrice = 10;
 
-  // Test case 1: getting articles for sale when no article for sale yet
-  it(
-    "should throw an exception if you try to get articles for sale when there is no article at all",
-    function() {
-      return ChainList.deployed().then(function(instance) {
-          chainListInstance = instance;
-          return chainListInstance.getArticlesForSale();
-        }).then(assert.fail)
-        .catch(function(error) {
-          assert(error.message.indexOf('invalid opcode') >= 0,
-            "error message must contain invalid opcode");
-        })
-    });
-
-  // Test case 2: buying an article when no article for sale yet
+  // Test case 1: buying an article when no article for sale yet
   it(
     "should throw an exception if you try to buy an article when there is no article for sale",
     function() {
@@ -48,7 +34,7 @@ contract('ChainList', function(accounts) {
         });
     });
 
-  // Test case 3: buying an article that does not exist
+  // Test case 2: buying an article that does not exist
   it(
     "should throw an exception if you try to buy an article that does not exist",
     function() {
@@ -84,7 +70,7 @@ contract('ChainList', function(accounts) {
         });
     });
 
-  // Test case 4: buying an article you are selling
+  // Test case 3: buying an article you are selling
   it("should throw an exception if you try to buy your own article",
     function() {
       return ChainList.deployed().then(function(instance) {
@@ -115,7 +101,7 @@ contract('ChainList', function(accounts) {
         });
     });
 
-  // Test case 5: incorrect value
+  // Test case 4: incorrect value
   // TODO: currently only supports buying article for the same selling article price
   // It should allow the customer to buy an article if they have more than the selling price,
   // just give back the leftover change to the customer.
@@ -150,7 +136,7 @@ contract('ChainList', function(accounts) {
         });
     });
 
-  // Test case 6: article has already been sold
+  // Test case 5: article has already been sold
   it(
     "should throw an exception if you try to buy an article that has already been sold",
     function() {

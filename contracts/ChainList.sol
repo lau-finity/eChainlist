@@ -44,7 +44,9 @@ contract ChainList {
   // Fetches and returns all article ids that are on sale
   function getArticlesForSale() public constant returns (uint[]) {
     // Check if there is at least one article
-    require(articleCounter > 0);
+    if (articleCounter == 0) {
+      return new uint[](0);
+    }
 
     // Prepare output arrays
     // NOTE: uint[] is stored in memory which is less expensive than storing it into storage
